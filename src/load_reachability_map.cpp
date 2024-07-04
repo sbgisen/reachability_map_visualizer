@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     // Creating messages
     reachability_map_visualizer::WorkSpace ws;
     ws.header.stamp = ros::Time::now();
-    ws.header.frame_id = "/base_footprint";
+    ws.header.frame_id = "base_footprint";
     ws.resolution = res;
 
     for (MapVecDoublePtr::iterator it = sphere_col.begin(); it != sphere_col.end(); ++it)

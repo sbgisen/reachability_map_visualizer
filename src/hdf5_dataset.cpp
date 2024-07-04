@@ -65,7 +65,7 @@ bool Hdf5Dataset::open()
 
   this->attr_ = H5Aopen(this->sphere_dataset_, "Resolution", H5P_DEFAULT);
   herr_t ret = H5Aread(this->attr_, H5T_NATIVE_FLOAT, &this->res_);
-
+  return true;
 }
 
 void Hdf5Dataset::close()
@@ -84,8 +84,9 @@ bool Hdf5Dataset::checkPath(std::string path)
   if (stat(path.c_str(), &st)!=0)
   {
     ROS_INFO("Path does not exist yet");
-    //return false;
+    return false;
   }
+  return true;
 }
 
 void Hdf5Dataset::createPath(std::string path)
@@ -107,6 +108,7 @@ bool Hdf5Dataset::checkFileName(std::string filename)
     ROS_ERROR("Please provide an extension of .h5 It will make life easy");
     exit(1);
   }
+  return true;
 }
 
 bool Hdf5Dataset::saveReachMapsToDataset( MultiMapPtr& poses,  MapVecDoublePtr& spheres, float resolution)
